@@ -7,7 +7,7 @@ const ProductList = () => {
     let [perPage, SetperPage]=useState(5);
 
     useEffect(() => {
-        GetProductList(9,perPage,searchKeyword);
+        GetProductList(1,perPage,searchKeyword);
     }, []);
 
     let AllProduct= useSelector((state)=>(state.product.AllProduct))
