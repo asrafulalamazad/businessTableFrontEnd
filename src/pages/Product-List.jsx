@@ -18,9 +18,13 @@ const ProductList = () => {
 
     function handlePageClick(event) {
         let pageNo= event.selected;
-        alert(pageNo+1)
-
+        alert('you are going to page no '+pageNo+1)
          GetProductList(pageNo+1,perPage,searchKeyword);
+
+    }
+    const perPageonChange = (e)=>{
+        SetperPage(parseInt(e.target.value))
+        GetProductList(1,e.target.value,searchKeyword);
 
     }
 
@@ -39,11 +43,23 @@ const ProductList = () => {
 
                                         </div>
                                         <div className="col-2">
+                                            <select onChange={perPageonChange} className="form-control mx-2 form-control-sm">
+                                                <option value="5"> 5 Per Page</option>
+                                                <option value="10"> 10 Per Page</option>
+                                                <option value="20"> 20 Per Page</option>
+                                                <option value="30"> 30 Per Page</option>
+                                                <option value="50"> 50 Per Page</option>
+                                                <option value="100"> 100 Per Page</option>
+                                                <option value="1000"> 1000 Per Page</option>
+                                                <option value="2000"> 2000 Per Page</option>
+                                                <option value="5000"> 5000 Per Page</option>
+                                            </select>
 
                                         </div>
                                         <div className="col-4">
                                             <div className="input-group mb-3">
-
+                                                <input type="text" className="form-control form-control-sm  form-select-sm" placeholder="Search..."/>
+                                                    <button className="btn btn-outline-primary btn-sm mb-0">Search</button>
                                             </div>
 
                                         </div>
