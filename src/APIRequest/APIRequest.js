@@ -9,12 +9,11 @@ const BaseURL="https://businesstable.onrender.com/api/v1/"
 
 export async function  GetProductList(pageNo,perPage,searchKeyword) {
     let URL= BaseURL+"/"+"ProductList/"+pageNo+"/"+perPage+"/"+searchKeyword;
-
-    store.dispatch(ShowLoader);
+    store.dispatch(ShowLoader());
 
     try {
         const result= await axios.get(URL);
-        store.dispatch(HideLoader);
+       store.dispatch(HideLoader());
 
         if(result.status===200 && result.data["status"]==="success"){
             if(result.data['data'][0]['Rows'].length>0){
@@ -38,7 +37,7 @@ export async function  GetProductList(pageNo,perPage,searchKeyword) {
 
     catch (e) {
         ErrorToast("Something Wrong")
-        store.dispatch(HideLoader);
+        store.dispatch(HideLoader());
 
     }
 
