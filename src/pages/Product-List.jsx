@@ -1,6 +1,8 @@
 import React, {Fragment, useEffect, useState} from 'react';
 import {GetProductList} from "../APIRequest/APIRequest";
 import {useSelector} from "react-redux";
+import ReactPaginate from "react-paginate";
+
 
 const ProductList = () => {
     let [searchKeyword, setSearchKeyword]=useState(0);
@@ -13,6 +15,14 @@ const ProductList = () => {
     let AllProduct= useSelector((state)=>(state.product.AllProduct))
     let Total= useSelector((state)=>(state.product.Total))
 
+
+    function handlePageClick(event) {
+        let pageNo= event.selected;
+        alert(pageNo+1)
+
+         GetProductList(pageNo+1,perPage,searchKeyword);
+
+    }
 
     return (
 
@@ -76,7 +86,7 @@ const ProductList = () => {
                                                                 <p className="badge bg-gradient-success">{item.stock} </p>
                                                             </td>
                                                             <td>
-                                                                <span className="text-secondary, text-xs, font-weight-bold"/>
+                                                                <span className="text-secondary text-uppercase text-xs font-weight-bold">code</span>
                                                             </td>
 
                                                         </tr>
@@ -90,7 +100,26 @@ const ProductList = () => {
                                         </div>
                                         <div className="col-12 mt-5">
                                             <nav aria-label="Page navigation example">
-
+                                                <ReactPaginate
+                                                    nextLabel=">>"
+                                                    previousLabel="<<"
+                                                    pageClassName="page-item"
+                                                    pageLinkClassName="page-link"
+                                                    previousClassName="page-item"
+                                                    previousLinkClassName="page-link"
+                                                    nextClassName="page-item"
+                                                    nextLinkClassName="page-link"
+                                                    breakLabel="..."
+                                                    breakClassName="page-item"
+                                                    breakLinkClassName="page-link"
+                                                    pageCount={Total/perPage}
+                                                    marginPagesDisplayed={2}
+                                                    pageRangeDisplayed={5}
+                                                    onPageChange={handlePageClick}
+                                                    containerClassName="pagination"
+                                                    activeClassName="active"
+                                                    // renderOnZeroPageCount={null}
+                                                />
                                             </nav>
                                         </div>
                                     </div>
