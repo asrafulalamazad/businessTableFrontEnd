@@ -18,14 +18,24 @@ const ProductList = () => {
 
     function handlePageClick(event) {
         let pageNo= event.selected;
-        alert('you are going to page no '+pageNo+1)
+        alert('you are going to page no '+(pageNo+1))
          GetProductList(pageNo+1,perPage,searchKeyword);
 
+    }
+    const searchData= ()=>{
+        GetProductList(1,perPage,searchKeyword);
     }
     const perPageonChange = (e)=>{
         SetperPage(parseInt(e.target.value))
         GetProductList(1,e.target.value,searchKeyword);
 
+    }
+    const searchKeywordOnChange = (e)=>{
+        setSearchKeyword(e.target.value);
+        if((e.target.value).length===0){
+            setSearchKeyword(0);
+            GetProductList (1,perPage,"0");
+        }
     }
 
     return (
@@ -58,8 +68,8 @@ const ProductList = () => {
                                         </div>
                                         <div className="col-4">
                                             <div className="input-group mb-3">
-                                                <input type="text" className="form-control form-control-sm  form-select-sm" placeholder="Search..."/>
-                                                    <button className="btn btn-outline-primary btn-sm mb-0">Search</button>
+                                                <input onChange={searchKeywordOnChange} type="text" className="form-control form-control-sm  form-select-sm" placeholder="Search..."/>
+                                                    <button onClick={searchData} className="btn btn-outline-primary btn-sm mb-0">Search</button>
                                             </div>
 
                                         </div>
@@ -102,7 +112,7 @@ const ProductList = () => {
                                                                 <p className="badge bg-gradient-success">{item.stock} </p>
                                                             </td>
                                                             <td>
-                                                                <span className="text-secondary text-uppercase text-xs font-weight-bold">code</span>
+                                                                <span className="text-secondary text-uppercase text-xs font-weight-bold">{item.product_code}</span>
                                                             </td>
 
                                                         </tr>
@@ -139,7 +149,6 @@ const ProductList = () => {
                                             </nav>
                                         </div>
                                     </div>
-
                                 </div>
                             </div>
                         </div>
@@ -148,8 +157,6 @@ const ProductList = () => {
                 </div>
             </div>
         </Fragment>
-
-
     );
 };
 
