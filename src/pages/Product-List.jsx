@@ -53,7 +53,7 @@ const ProductList = () => {
 
                                         </div>
                                         <div className="col-2">
-                                            <select onChange={perPageonChange} className="form-control mx-2 form-control-sm">
+                                            <select onChange={perPageonChange} className="form-control mx-2 form-control-sm form-select">
                                                 <option value="5"> 5 Per Page</option>
                                                 <option value="10"> 10 Per Page</option>
                                                 <option value="20"> 20 Per Page</option>
